@@ -41,25 +41,29 @@ const removeFromRoom = (roomName, id) => {
   rooms[roomName] = rooms[roomName].filter((user) => user.id != id);
 };
 
+const enterRoom = (roomName, username, id) => {
+  if (rooms[roomName]) {
+    if (rooms[roomName][1]) {
+      return { success: false };
+    }
+    rooms[roomName].push({ username, id });
+  } else {
+    rooms[roomName] = [{ username, id }];
+  }
+  return { success: true, room: rooms[roomName], roomName };
+};
+
 module.exports = (io) => {
   io.on("connection", (socket) => {
     // socket.emit("update", score);
 
     socket.on("enter", ({ username, roomName }, callback) => {
-      console.log("server callback", callback);
-      if (rooms[roomName]) {
-        if (rooms[roomName][1]) {
-          callback({ success: false });
-          return;
-        }
-        rooms[roomName].push({ username, id: socket.id });
-      } else {
-        rooms[roomName] = [{ username, id: socket.id }];
+      const res = enterRoom(roomName, username, socket.id);
+      if (res.success) {
+        socket.join(roomName);
+        socket.roomName = roomName;
       }
-      console.log("rooms", rooms);
-      socket.join(roomName);
-      socket.roomName = roomName;
-      callback({ success: true, room: rooms[roomName] });
+      callback(res);
     });
 
     socket.on("disconnect", () => {
