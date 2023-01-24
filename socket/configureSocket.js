@@ -1,39 +1,4 @@
-const score = {
-  team1: 0,
-  team2: 0,
-  winner: "",
-  scoredBy: "",
-};
 
-const prevState = {
-  team1: 0,
-  team2: 0,
-  scoredBy: "",
-};
-
-const updateScore = (teamName, update) => {
-  prevState.team1 = score.team1;
-  prevState.team2 = score.team2;
-  prevState.scoredBy = score.scoredBy;
-  score[teamName] += update;
-  score.scoredBy = teamName;
-
-  // console.log({ score, prevState });
-};
-
-const undoScore = () => {
-  score.team1 = prevState.team1;
-  score.team2 = prevState.team2;
-  score.scoredBy = prevState.scoredBy;
-  score.winner = "";
-};
-
-const resetScore = () => {
-  score.team1 = 0;
-  score.team2 = 0;
-  score.scoredBy = "";
-  score.winner = "";
-};
 
 const rooms = {};
 
@@ -44,49 +9,60 @@ const removeFromRoom = (roomName, id) => {
 const enterRoom = (roomName, username, id) => {
   if (rooms[roomName]) {
     if (rooms[roomName][1]) {
-      return { success: false };
+      return false
     }
     rooms[roomName].push({ username, id });
   } else {
     rooms[roomName] = [{ username, id }];
   }
-  return { success: true, room: rooms[roomName], roomName };
+  return true
 };
+
+const emitRoomInfo = (io, roomName) => {
+  io.to(roomName).emit("roomInfo", { roomName, members: rooms[roomName] })
+}
 
 module.exports = (io) => {
   io.on("connection", (socket) => {
     // socket.emit("update", score);
 
     socket.on("enter", ({ username, roomName }, callback) => {
+      socket.username = username
       const res = enterRoom(roomName, username, socket.id);
-      if (res.success) {
+      if (res) {
         socket.join(roomName);
         socket.roomName = roomName;
+        emitRoomInfo(io, roomName)
+        // io.to(roomName).emit("roomInfo", res.room)
       }
+
       callback(res);
     });
 
+    socket.on("kiss", (kiss) => {
+      const roomName = socket.roomName
+      const username = socket.username
+      rooms[roomName] = rooms[roomName].map((member) => {
+        if (member.username === username) {
+          return {
+            ...member,
+            kiss
+          }
+        }
+        return member
+      })
+      console.log("kiss", { roomName, username, kiss, room: rooms[roomName] })
+      io.to(roomName).emit("roomInfo", { roomName, members: rooms[roomName] })
+    })
+
     socket.on("disconnect", () => {
-      console.log("disconnect roomName", socket.roomName);
-      if (socket.roomName) {
+      const roomName = socket.roomName
+      if (roomName) {
         removeFromRoom(socket.roomName, socket.id);
+        console.log("rooms", rooms)
+        // io.to(roomName).emit("roomInfo", { roomName, members: room })
+        emitRoomInfo(io, roomName)
       }
-      console.log("disconnect id", socket.id); // undefined
-    });
-
-    socket.on("update", ({ teamName, update }) => {
-      updateScore(teamName, update);
-      io.emit("update", score);
-    });
-
-    socket.on("undo", () => {
-      undoScore();
-      io.emit("update", score);
-    });
-
-    socket.on("reset", () => {
-      resetScore();
-      io.emit("update", score);
     });
   });
 };

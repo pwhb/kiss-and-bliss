@@ -15,11 +15,10 @@ body {
   background-color: rgba(255, 255, 255, 0.8);
   /* border: 1px solid rgba(0, 0, 0, 0.8); */
   padding: 20px;
-  font-size: 30px;
   text-align: center;
 }
 
-.person {
+.icon {
   width: 12rem;
   height: 12rem;
 }
@@ -30,6 +29,7 @@ body {
 
 .display {
   text-align: center;
+  font-size: large;
 }
 
 @media only screen and (max-width: 600px) {
@@ -55,10 +55,68 @@ body {
   transform: rotate(90deg);
 }
 
+label {
+  font-size: 3rem;
+}
+#usernameInput,
+#roomNameInput {
+  width: 100%;
+  font-size: 4rem;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#submit {
+  width: 100%;
+  background-color: #e2648c;
+  color: white;
+  font-size: 4rem;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#submit:hover {
+  background-color: #e04e7c;
+}
+
+#enter-form {
+  border-radius: 5px;
+  background-color: #edd7de;
+  padding: 20px;
+}
+
 .title {
   text-align: center;
-  font-family: monospace;
 }
+
+#kissButton {
+  margin: auto;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+}
+
+#kissButton:hover {
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.24), 0 5px 13px 0 rgba(0, 0, 0, 0.19);
+}
+
+.kissing {
+  background-color: #e2648c;
+}
+
+
+
 .container {
   display: grid;
   grid-template-columns: 1fr 1fr;

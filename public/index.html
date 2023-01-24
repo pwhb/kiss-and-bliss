@@ -12,41 +12,55 @@
   </head>
   <body>
     <div class="hidden" id="display">
-      <p>room: <span id="roomName">hello</span></p>
-      <p><span id="user1">user1</span> ❤️ <span id="user2">user2</span></p>
-    </div>
-    <div class="hidden" id="game">
-      <div class="grid-item">
-        <img class="person right" id="right1" src="/svg/normal.svg" alt="" />
+      <p>room: <span id="roomName"></span></p>
+      <p><span id="user1"></span> ❤️ <span id="user2"></span></p>
+
+      <div class="hidden" id="game">
+        <div class="grid-item">
+          <img class="icon right" id="right1" src="/svg/normal.svg" alt="" />
+        </div>
+        <div class="grid-item"></div>
+        <div class="grid-item">
+          <img class="icon left" id="right2" src="/svg/normal.svg" alt="" />
+        </div>
+        <div class="grid-item"></div>
+        <div class="grid-item">
+          <img class="icon right" id="player1" src="/svg/smile.svg" alt="" />
+          <img class="icon left" id="player2" src="/svg/smile.svg" alt="" />
+        </div>
+        <div class="grid-item"></div>
+        <div class="grid-item">
+          <img class="icon left" id="left1" src="/svg/eyes.svg" alt="" />
+        </div>
+        <div class="grid-item"></div>
+        <div class="grid-item">
+          <img class="icon right" id="left2" src="/svg/eyes.svg" alt="" />
+        </div>
       </div>
-      <div class="grid-item"></div>
-      <div class="grid-item">
-        <img class="person left" id="right2" src="/svg/normal.svg" alt="" />
-      </div>
-      <div class="grid-item"></div>
-      <div class="grid-item">
-        <img class="person" id="player1" src="/svg/kiss.svg" alt="" />
-        <img class="person right" id="player2" src="/svg/kiss.svg" alt="" />
-      </div>
-      <div class="grid-item"></div>
-      <div class="grid-item">
-        <img class="person left" id="left1" src="/svg/eyes.svg" alt="" />
-      </div>
-      <div class="grid-item"></div>
-      <div class="grid-item">
-        <img class="person right" id="left2" src="/svg/eyes.svg" alt="" />
-      </div>
+      <button id="kissButton">
+        <img src="/svg/kiss-button.svg" class="icon" alt="" />
+      </button>
     </div>
 
     <div id="enter-form">
-      <input type="text" name="username" placeholder="username" id="usernameInput" />
+      <h1 class="title">kiss and bliss</h1>
+
+      <label for="usernameInput">Username</label>
+      <input
+        type="text"
+        name="username"
+        placeholder="username"
+        id="usernameInput"
+      />
+
+      <label for="roomNameInput">Room Name</label>
       <input
         type="text"
         name="roomName"
         placeholder="room name"
         id="roomNameInput"
       />
-      <button id="submit">submit</button>
+      <button id="submit" class="submit">submit</button>
     </div>
 
     <script src="/socket.io/socket.io.js"></script>
