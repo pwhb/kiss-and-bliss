@@ -30,11 +30,13 @@ const updateRoomInfo = (response) => {
   player1.src = response.members[0].kiss ? "/svg/kiss.svg" : "/svg/smile.svg"
   player2.className = response.members[1]?.kiss ? "icon right" : "icon left"
   player2.src = response.members[1].kiss ? "/svg/kiss.svg" : "/svg/smile.svg"
+
+  gameContainer.className = response.members[0].kiss && response.members[1]?.kiss ? "grid-container beating-heart" : "grid-container"
 };
 
 
 const emitKiss = (kiss) => {
-  kissButton.className = kiss ? "kissing" : ""
+  kissButton.className = kiss ? "kissing-button" : ""
   socket.emit("kiss", kiss)
 }
 

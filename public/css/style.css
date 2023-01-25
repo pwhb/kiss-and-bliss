@@ -70,7 +70,7 @@ label {
   margin: 8px 0;
   display: inline-block;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 2rem;
   box-sizing: border-box;
 }
 
@@ -82,7 +82,7 @@ label {
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
-  border-radius: 4px;
+  border-radius: 2rem;
   cursor: pointer;
 }
 
@@ -91,7 +91,7 @@ label {
 }
 
 #enter-form {
-  border-radius: 5px;
+  border-radius: 2rem;
   background-color: #edd7de;
   padding: 20px;
 }
@@ -108,7 +108,7 @@ label {
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
-  border-radius: 4px;
+  border-radius: 2rem;
 }
 
 #kissButton:hover {
@@ -119,12 +119,41 @@ img {
   pointer-events: none;
 }
 
-.kissing {
+.beating-heart {
   /* background-color: #e2648c; */
-  background-image: url("/svg/heart1.svg");
+  background-image: url("/svg/heart.svg");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 20rem;
+  /* background-size: 20rem; */
+  animation: beating-heart-animation 2s infinite;
+}
+
+@keyframes beating-heart-animation {
+  0% {
+    background-size: 12rem;
+  }
+  50% {
+    background-size: 36rem;
+  }
+  100% {
+    background-size: 12rem;
+  }
+}
+
+.kissing-button {
+  animation: kiss-button-animation 2s infinite;
+}
+
+@keyframes kiss-button-animation {
+  0% {
+    background-color: #e2648c;
+  }
+  50% {
+    background-color: #ffffff;
+  }
+  100% {
+    background-color: #e2648c;
+  }
 }
 
 .container {
