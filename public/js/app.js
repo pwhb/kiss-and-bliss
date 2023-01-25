@@ -48,7 +48,6 @@ submitButton.onclick = () => {
 
   socket.emit("enter", payload, (response) => {
     if (response) {
-      gameContainer.className = "grid-container";
       enterForm.className = "hidden";
       display.className = "display";
     }

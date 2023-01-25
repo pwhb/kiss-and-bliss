@@ -8,11 +8,11 @@ body {
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto;
-  background-color: #e2648c;
+  /* background-color: #e2648c; */
   padding: 10px;
 }
 .grid-item {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.1);
   /* border: 1px solid rgba(0, 0, 0, 0.8); */
   padding: 20px;
   text-align: center;
@@ -25,6 +25,10 @@ body {
 
 .hidden {
   display: none;
+}
+
+.invisible {
+  visibility: hidden;
 }
 
 .display {
@@ -111,11 +115,17 @@ label {
   box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.24), 0 5px 13px 0 rgba(0, 0, 0, 0.19);
 }
 
-.kissing {
-  background-color: #e2648c;
+img {
+  pointer-events: none;
 }
 
-
+.kissing {
+  /* background-color: #e2648c; */
+  background-image: url("/svg/heart1.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 20rem;
+}
 
 .container {
   display: grid;
@@ -127,54 +137,4 @@ label {
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 20px;
-}
-.button {
-  border: none;
-  color: white;
-  font-size: 16px;
-  height: 3rem;
-  width: 100%;
-  margin-top: 20px;
-}
-
-.child {
-  text-align: center;
-  padding: 20px;
-  border: 2px solid black;
-}
-
-.button:hover,
-.child:hover {
-  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.24), 0 5px 13px 0 rgba(0, 0, 0, 0.19);
-}
-
-.scored-container {
-  border: 8px solid greenyellow;
-}
-
-.disabled {
-  background-color: gray;
-}
-
-.teamName {
-  font-size: 2rem;
-}
-.score {
-  font-size: 4rem;
-  font-family: Orbitron;
-}
-
-.undo {
-  background-color: orange;
-}
-
-.reset {
-  background-color: red;
-}
-
-.green {
-  background-color: greenyellow;
-}
-.red {
-  background-color: red;
 }

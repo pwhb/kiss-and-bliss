@@ -11,30 +11,30 @@
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
   </head>
   <body>
-    <div class="hidden" id="display">
+    <div class="" id="display">
       <p>room: <span id="roomName"></span></p>
       <p><span id="user1"></span> ❤️ <span id="user2"></span></p>
-
-      <div class="hidden" id="game">
+      <!-- <img src="/svg/heart.svg" id="heart" class="" alt=""> -->
+      <div class="grid-container kissing" id="game">
         <div class="grid-item">
-          <img class="icon right" id="right1" src="/svg/normal.svg" alt="" />
+          <img class="icon right invisible" id="right1" src="/svg/normal.svg" alt="" />
         </div>
         <div class="grid-item"></div>
         <div class="grid-item">
-          <img class="icon left" id="right2" src="/svg/normal.svg" alt="" />
+          <img class="icon left invisible" id="right2" src="/svg/normal.svg" alt="" />
         </div>
         <div class="grid-item"></div>
-        <div class="grid-item">
+        <div class="grid-item" id="player-container">
           <img class="icon right" id="player1" src="/svg/smile.svg" alt="" />
           <img class="icon left" id="player2" src="/svg/smile.svg" alt="" />
         </div>
         <div class="grid-item"></div>
         <div class="grid-item">
-          <img class="icon left" id="left1" src="/svg/eyes.svg" alt="" />
+          <img class="icon left invisible" id="left1" src="/svg/eyes.svg" alt="" />
         </div>
         <div class="grid-item"></div>
         <div class="grid-item">
-          <img class="icon right" id="left2" src="/svg/eyes.svg" alt="" />
+          <img class="icon right invisible" id="left2" src="/svg/eyes.svg" alt="" />
         </div>
       </div>
       <button id="kissButton">
