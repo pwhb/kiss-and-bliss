@@ -125,7 +125,7 @@ img {
   background-position: center;
   background-repeat: no-repeat;
   /* background-size: 20rem; */
-  animation: beating-heart-animation 2s infinite;
+  animation: beating-heart-animation 0.8s infinite;
 }
 
 @keyframes beating-heart-animation {
@@ -141,7 +141,7 @@ img {
 }
 
 .kissing-button {
-  animation: kiss-button-animation 2s infinite;
+  animation: kiss-button-animation 0.8s infinite;
 }
 
 @keyframes kiss-button-animation {

@@ -20,6 +20,10 @@ const roomName = document.getElementById("roomName");
 
 const kissButton = document.getElementById("kissButton")
 
+
+const kissSound = new Audio("/sounds/kiss.wav")
+kissSound.loop = true
+
 const updateRoomInfo = (response) => {
   console.log(response)
   roomName.innerText = response.roomName;
@@ -30,12 +34,19 @@ const updateRoomInfo = (response) => {
   player1.src = response.members[0].kiss ? "/svg/kiss.svg" : "/svg/smile.svg"
   player2.className = response.members[1]?.kiss ? "icon right" : "icon left"
   player2.src = response.members[1].kiss ? "/svg/kiss.svg" : "/svg/smile.svg"
+  if (response.members[0].kiss && response.members[1]?.kiss) {
+    kissSound.play()
+    gameContainer.className = "grid-container beating-heart" 
+  } else {
+    kissSound.pause()
+    gameContainer.className =  "grid-container"
+  }
+  // gameContainer.className = response.members[0].kiss && response.members[1]?.kiss ? "grid-container beating-heart" : "grid-container"
 
-  gameContainer.className = response.members[0].kiss && response.members[1]?.kiss ? "grid-container beating-heart" : "grid-container"
 };
 
-
 const emitKiss = (kiss) => {
+
   kissButton.className = kiss ? "kissing-button" : ""
   socket.emit("kiss", kiss)
 }
